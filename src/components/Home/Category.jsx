@@ -28,9 +28,9 @@ const Category = () => {
     ))
   }
   return (
-    <div className="mr-[50px] flex-6">
+    <div className="md:mr-[50px] mr-0 flex-6">
       <div
-        className="flex items-center justify-between bg-main p-3 rounded-md cursor-pointer shadow-md"
+        className="flex items-center justify-between bg-main p-3 rounded-md cursor-pointer shadow-md w-full"
         onClick={() => setOpen(!open)}
       >
         <h4 className="font-medium text-xl text-white">Category</h4>

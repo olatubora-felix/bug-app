@@ -26,8 +26,12 @@ const Items = ({ product }) => {
   }
   const handleFlutterPayment = useFlutterwave(config)
   return (
-    <div className="bg-white p-3 shadow-md w-[300px]">
-      <img src={product.thumbnail} alt="" className="h-[200px] w-[300px]" />
+    <div className="bg-white p-3 shadow-md w-full md:w-[300px]">
+      <img
+        src={product.thumbnail}
+        alt=""
+        className="h-[200px] w-full md:w-[300px]"
+      />
       <div className="flex justify-between my-3 items-center">
         <span>{product.title}</span>
         <div>
