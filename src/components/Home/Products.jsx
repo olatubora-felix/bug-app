@@ -7,7 +7,6 @@ import { Link } from 'react-router-dom'
 const Products = () => {
   const ctx = useContext(ProductContext)
   const { products, onChangeSearch, onClickSearch, searchProduct } = ctx
-  console.log(products)
   return (
     <section className="mx-auto container p-4 mt-8">
       <div className="flex justify-between items-center">
