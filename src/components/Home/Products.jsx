@@ -9,17 +9,18 @@ const Products = () => {
   const { products, onChangeSearch, onClickSearch, searchProduct } = ctx
   return (
     <section className="mx-auto container p-4 mt-8">
-      <div className="flex justify-between items-center">
-        <h1 className=" text-primary md:text-2xl text-sm font-semibold">
+      <div className="flex justify-between items-center md:flex-row flex-col">
+        <h1 className=" text-primary md:text-2xl text-base font-semibold mb-4">
           Our Latest Product
         </h1>
-        <div>
+        <div className="w-full md:w-80">
           <Input
             type={'search'}
-            label="Search Products"
+            label="Search Products..."
             onChange={onChangeSearch}
             value={searchProduct}
             icon={<i class="bi bi-search" onClick={onClickSearch}></i>}
+            className=""
           />
         </div>
       </div>

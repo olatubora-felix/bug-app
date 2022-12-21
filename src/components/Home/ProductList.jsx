@@ -39,12 +39,12 @@ const ProductList = ({ category }) => {
 
   return (
     <section className="flex-8 border border-gray-100 shadow-md rounded-md bg-[#BED8FF0D]">
-      <div className="flex justify-between w-full border-b border-b-[#3785F7] p-4 ">
-        <h2 className=" uppercase text-[#3785F7] font-semibold">
+      <div className="flex justify-between w-full border-b border-b-[#3785F7] p-4 md:flex-row flex-col">
+        <h2 className=" uppercase text-[#3785F7] font-semibold md:mb-0 mb-3 md:text-start text-center">
           {category} {data?.total} <span>Items</span>
         </h2>
-        <div>
-          <span className="mr-3">Sort by:</span>
+        <div className="md:block flex justify-between">
+          <span className="mr-3 text-[#3785F7]">Sort by:</span>
           <select name="" id="">
             <option>New Products</option>
             <option>Price - Low to High</option>
