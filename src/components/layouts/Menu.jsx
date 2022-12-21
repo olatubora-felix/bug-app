@@ -10,12 +10,11 @@ const Account = () => {
   return (
     <Menu>
       <MenuHandler>
-        <Button variant="gradient">Open Menu</Button>
+        <Button variant="gradient">Get Account</Button>
       </MenuHandler>
       <MenuList>
-        <MenuItem>Menu Item 1</MenuItem>
-        <MenuItem>Menu Item 2</MenuItem>
-        <MenuItem>Menu Item 3</MenuItem>
+        <MenuItem>Login</MenuItem>
+        <MenuItem>Sign Up</MenuItem>
       </MenuList>
     </Menu>
   )

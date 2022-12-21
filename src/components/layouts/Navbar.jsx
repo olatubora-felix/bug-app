@@ -1,4 +1,3 @@
-import { Input } from '@material-tailwind/react'
 import React from 'react'
 import { Link, NavLink } from 'react-router-dom'
 import logo from '../../assets/logo.svg'
@@ -12,7 +11,7 @@ const Navbar = () => {
           <img src={logo} alt="logo" className="w-20 md:w-28" />
         </Link>
         <div>
-          <Input type={'search'} label="Search Products" />
+          <i class="bi bi-list text-3xl md:hidden block"></i>
         </div>
         <ul className="md:flex hidden items-center gap-4">
           <li>

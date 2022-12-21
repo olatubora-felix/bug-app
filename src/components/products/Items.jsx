@@ -2,29 +2,10 @@ import React, { useState } from 'react'
 import fill from '../../assets/fill-wishlist.svg'
 import outline from '../../assets/outline-wishlist.svg'
 import { Button } from '@material-tailwind/react'
-import { closePaymentModal, useFlutterwave } from 'flutterwave-react-v3'
 
 const Items = ({ product }) => {
   const [wish, setWish] = useState(false)
-  const config = {
-    public_key: 'FLWPUBK_TEST-e7b07b57bf6009bad5e1bb0181b21583-X',
-    tx_ref: Date.now(),
-    amount: product.price,
-    currency: 'NGN',
-    payment_options: 'card,mobilemoney,ussd',
-    customer: {
-      email: 'olatuborafelix05@gmail.com',
-      phone_number: '07086514426',
-      name: 'john Adewale',
-    },
-    customizations: {
-      title: product.title,
-      description: product.description,
-      logo: product.thumbnail,
-    },
-    redirect_url: 'http://localhost:3002/success',
-  }
-  const handleFlutterPayment = useFlutterwave(config)
+
   return (
     <div className="bg-white p-3 shadow-md w-full md:w-[300px]">
       <img
@@ -53,20 +34,8 @@ const Items = ({ product }) => {
         </div>
       </div>
       <h3 className="text-blue-500">N{product.price}</h3>
-      <Button
-        fullWidth
-        className="my-3"
-        onClick={() => {
-          handleFlutterPayment({
-            callback: (response) => {
-              console.log(response)
-              closePaymentModal() // this will close the modal programmatically
-            },
-            onClose: () => {},
-          })
-        }}
-      >
-        Buy Items
+      <Button fullWidth className="my-3">
+        Add To Cart
       </Button>
     </div>
   )

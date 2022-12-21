@@ -3,13 +3,6 @@ import Items from '../products/Items'
 import { useEffect, useState } from 'react'
 
 const ProductList = ({ category }) => {
-  // const { status, error, data } = useQuery('product', async () => {
-  //   const res = await axios.get(
-  //     `https://dummyjson.com/products/category/${category}`
-  //   )
-  //   return res.data
-  // })
-
   const [status, setStatus] = useState('idle')
   const [data, setData] = useState({})
   const [error, setError] = useState('')
@@ -41,7 +34,7 @@ const ProductList = ({ category }) => {
       <Items key={product.id} product={product} />
     ))
   } else if (status === 'error') {
-    return (content = <h1 className="text-xl text-red-600">{error.message}</h1>)
+    return (content = <h1 className="text-xl text-red-600">{error}</h1>)
   }
 
   return (
