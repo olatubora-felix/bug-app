@@ -11,7 +11,7 @@ const Navbar = () => {
           <img src={logo} alt="logo" className="w-20 md:w-28" />
         </Link>
         <div>
-          <i class="bi bi-list text-3xl md:hidden block"></i>
+          <i className="bi bi-list text-3xl md:hidden block"></i>
         </div>
         <ul className="md:flex hidden items-center gap-4">
           <li>

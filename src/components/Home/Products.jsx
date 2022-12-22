@@ -37,7 +37,7 @@ const Products = () => {
           </h2>
         </div>
       )}
-      {products.length === 0 && (
+      {products.length < 0 && (
         <div className="text-center my-6">
           <Link to={'/products'} className="text-blue-600 text-xl">
             View More

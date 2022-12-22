@@ -4,8 +4,21 @@
   gap: 20px;
 }
 
+.details {
+  width: 512px !important;
+}
+
+li.thumb,
+li.thumb selected {
+  width: 100px !important;
+  height: 50px !important;
+}
+
 @media (max-width: 568px) {
   .grid-wrapper {
     grid-template-columns: 1fr;
+  }
+  .carousel-root {
+    width: 100% !important;
   }
 }

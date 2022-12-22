@@ -68,6 +68,12 @@ export const ProductContextApi = ({ children }) => {
     fetchProducts()
   }, [result])
 
+  setTimeout(() => {
+    if (result) {
+      setResult('')
+    }
+  }, 5000)
+
   const onClickSearch = () => {
     if (searchProduct && searchProduct !== '') {
       setResult(searchProduct)
