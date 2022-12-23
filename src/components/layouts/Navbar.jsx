@@ -3,6 +3,7 @@ import { Navbar, MobileNav, IconButton } from '@material-tailwind/react'
 import Account from './GetAccount'
 import { Link, NavLink } from 'react-router-dom'
 import logo from '../../assets/logo.svg'
+import { routes } from '../../constant/data'
 
 export default function Example() {
   const [openNav, setOpenNav] = useState(false)
@@ -16,11 +17,14 @@ export default function Example() {
 
   const navList = (
     <ul className="mb-4 mt-2 flex flex-col gap-2 lg:mb-0 lg:mt-0 lg:flex-row lg:items-center lg:gap-6">
-      <li>
-        <NavLink className="text-blue-600" to={'/about'}>
-          About Us
-        </NavLink>
-      </li>
+      {routes.map((route) => (
+        <li key={route.id}>
+          <NavLink className="text-blue-6004" to={route.link}>
+            {route.name}
+          </NavLink>
+        </li>
+      ))}
+
       <li>
         <NavLink className="text-blue-600" to={'/products'}>
           Products

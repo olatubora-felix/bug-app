@@ -20,3 +20,26 @@ export const categories = [
     title: 'groceries',
   },
 ]
+
+export const routes = [
+  {
+    id: 1,
+    name: 'About Us',
+    link: '/about-us',
+  },
+  {
+    id: 2,
+    name: 'Products',
+    link: '/products',
+  },
+  {
+    id: 3,
+    name: 'Help',
+    link: '/help',
+  },
+  {
+    id: 4,
+    name: 'Cart',
+    link: '/cart',
+  },
+]
