@@ -37,14 +37,14 @@ const Products = () => {
             ?.slice(0, 8)
             .map((product) => <Items key={product.id} product={product} />)}
       </div>
-      {products.length <= 0 && (
+      {products?.data?.length <= 0 && (
         <div className="text-center h-[50px]">
           <h2 className="text-blue-600 font-body text-2xl">
             No Product Result
           </h2>
         </div>
       )}
-      {products.length < 0 && (
+      {products?.data?.length < 0 && (
         <div className="text-center my-6">
           <Link to={'/products'} className="text-blue-600 text-xl">
             View More
