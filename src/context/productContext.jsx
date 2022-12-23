@@ -1,11 +1,11 @@
 import axios from 'axios'
-import { createContext, useEffect, useState } from 'react'
+import { createContext, useState } from 'react'
 import { useQuery } from 'react-query'
 
 const BASE_URL = 'https://dummyjson.com'
 const ProductContext = createContext({
   categories: {},
-  products: [],
+  products: {},
   onChangeSearch: () => {},
   result: '',
   productStatus: '',
@@ -15,58 +15,33 @@ const ProductContext = createContext({
 })
 
 export const ProductContextApi = ({ children }) => {
-  const [products, setProducts] = useState([])
   const [searchProduct, setSearchProduct] = useState('')
   const [result, setResult] = useState('')
-  const [productStatus, setProductStatus] = useState('idle')
-  const [productError, setProductError] = useState('')
 
   const fetchCategory = async () => {
     const { data } = await axios.get(`${BASE_URL}/products/categories`)
     return data
   }
 
-  // Get product List
-  const { status, error, data } = useQuery('categories', () => fetchCategory())
+  // Get Caterogry List
+  const categories = useQuery('categories', () => fetchCategory())
 
-  const categories = {
-    data,
-    status,
-    error,
+  const fetchProducts = async (result) => {
+    const { data } = await axios.get(
+      result
+        ? `https://dummyjson.com/products/search?q=${result}`
+        : `https://dummyjson.com/products`
+    )
+    return data.products
   }
+
+  // Get products List
+  const products = useQuery(['products', result], () => fetchProducts(result))
 
   // Handle Search Change
   const onChangeSearch = (e) => {
     setSearchProduct(e.target.value)
   }
-
-  // Get All Products
-  useEffect(() => {
-    const fetchProducts = async () => {
-      setProductStatus('loading')
-      try {
-        const { data } = await axios.get(
-          result
-            ? `${BASE_URL}/products/search?q=${result}`
-            : `${BASE_URL}/products`
-        )
-        if (data) {
-          setProductStatus('success')
-          setProducts(data.products)
-        }
-      } catch (error) {
-        setProductStatus('loading')
-        if (error) {
-          setTimeout(() => {
-            setProductError(error.message)
-            setProductStatus('failed')
-          }, 5000)
-        }
-      }
-    }
-
-    fetchProducts()
-  }, [result])
 
   setTimeout(() => {
     if (result) {
@@ -85,13 +60,11 @@ export const ProductContextApi = ({ children }) => {
     <ProductContext.Provider
       value={{
         categories,
-        products,
         result,
-        productError,
-        productStatus,
         onClickSearch,
         onChangeSearch,
         searchProduct,
+        products,
       }}
     >
       {children}

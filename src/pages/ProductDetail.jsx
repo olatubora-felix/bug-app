@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react'
+import React, { useState } from 'react'
 import { MdKeyboardArrowRight } from 'react-icons/md'
 import facebook from '../assets/facebook.svg'
 import twitter from '../assets/twitter.svg'
@@ -8,45 +8,30 @@ import { Link, useParams } from 'react-router-dom'
 import axios from 'axios'
 import { Carousel } from 'react-responsive-carousel'
 import 'react-responsive-carousel/lib/styles/carousel.min.css'
+import { useQuery } from 'react-query'
+import Message from '../components/UI/Message'
 const ProductDetail = () => {
   const { id } = useParams()
-  const [product, setProduct] = useState({})
-  const [status, setStatus] = useState('idle')
-  const [error, setError] = useState('')
   const [quantity, setQuantity] = useState(1)
 
-  useEffect(() => {
-    setStatus('loading')
-    axios
-      .get(`https://dummyjson.com/products/${id}`)
-      .then((res) => {
-        if (res.data) {
-          setProduct(res.data)
-          setStatus('success')
-        }
-      })
-      .catch((error) => {
-        setError(error.message)
-        setStatus('failed')
-      })
-  }, [id])
-  // Get the product price and multiply it by quantity
-  const tottal = product?.price * quantity
-
-  if (status === 'loading') {
-    return (
-      <div className="mx-auto container text-blue-600 my-4 text-2xl">
-        <h1>Loading</h1>
-      </div>
-    )
+  const fetchProduct = async (id) => {
+    const res = await axios.get(`https://dummyjson.com/products/${id}`)
+    return res.data
   }
 
-  if (status === 'failed') {
-    return (
-      <div className="mx-auto container text-red-600 my-4 text-2xl">
-        <h1>{error}</h1>
-      </div>
-    )
+  const {
+    data: product,
+    status,
+    error,
+  } = useQuery(['product-detail', id], () => fetchProduct(id))
+  // Get the product price and multiply it by quantity
+  const tottal = product?.price * quantity
+  if (status === 'loading') {
+    return <Message text="Loading" className="text-blue-600" />
+  }
+
+  if (status === 'error') {
+    return <Message text={error.message} className="text-red-600" />
   }
 
   const addQuantity = () => {
@@ -99,11 +84,6 @@ const ProductDetail = () => {
         </ul>
         <section className="my-6 bg-white p-4 rounded-md shadow-lg">
           <div className="flex  md:flex-row flex-col">
-            {/* <img
-              src={detail}
-              alt="name"
-              className="md:w-[512px] w-full mb-4 md:mb-0"
-            /> */}
             <Carousel showStatus={false} showArrows={false} className="details">
               {product?.images?.map((productImage, i) => (
                 <div key={i}>

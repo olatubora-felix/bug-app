@@ -8,8 +8,8 @@ const Items = ({ product }) => {
   const [wish, setWish] = useState(false)
 
   return (
-    <Link to={`/products/detail/${product.id}`}>
-      <div className="bg-white p-3 shadow-md w-full md:w-[300px]">
+    <div className="bg-white p-3 shadow-md w-full md:w-[300px]">
+      <Link to={`/products/detail/${product.id}`}>
         <img
           src={product.thumbnail}
           alt=""
@@ -36,11 +36,11 @@ const Items = ({ product }) => {
           </div>
         </div>
         <h3 className="text-blue-500">N{product.price}</h3>
-        <Button fullWidth className="my-3">
-          Add To Cart
-        </Button>
-      </div>
-    </Link>
+      </Link>
+      <Button fullWidth className="my-3">
+        Add To Cart
+      </Button>
+    </div>
   )
 }
 

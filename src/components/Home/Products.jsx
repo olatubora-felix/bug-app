@@ -3,10 +3,18 @@ import { Input } from '@material-tailwind/react'
 import ProductContext from '../../context/productContext'
 import Items from '../products/Items'
 import { Link } from 'react-router-dom'
+import Message from '../UI/Message'
 
 const Products = () => {
   const ctx = useContext(ProductContext)
-  const { products, onChangeSearch, onClickSearch, searchProduct } = ctx
+  const { onChangeSearch, onClickSearch, searchProduct, products } = ctx
+
+  if (products.status === 'loading') {
+    return <Message text={'Loading...'} />
+  }
+  if (products.status === 'error') {
+    return <Message text={products.error.message} />
+  }
   return (
     <section className="mx-auto container p-4 mt-8">
       <div className="flex justify-between items-center md:flex-row flex-col">
@@ -19,14 +27,13 @@ const Products = () => {
             label="Search Products..."
             onChange={onChangeSearch}
             value={searchProduct}
-            icon={<i class="bi bi-search" onClick={onClickSearch}></i>}
-            className=""
+            icon={<i className="bi bi-search" onClick={onClickSearch}></i>}
           />
         </div>
       </div>
       <div className="grid md:grid-cols-4 grid-cols-1 gap-4 my-6">
-        {products.length >= 1 &&
-          products
+        {products?.data.length >= 1 &&
+          products?.data
             ?.slice(0, 8)
             .map((product) => <Items key={product.id} product={product} />)}
       </div>
