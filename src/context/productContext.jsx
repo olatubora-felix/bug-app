@@ -8,8 +8,6 @@ const ProductContext = createContext({
   products: {},
   onChangeSearch: () => {},
   result: '',
-  productStatus: '',
-  productError: '',
   searchProduct: '',
   onClickSearch: () => {},
 })
