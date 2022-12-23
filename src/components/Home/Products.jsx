@@ -10,10 +10,10 @@ const Products = () => {
   const { onChangeSearch, onClickSearch, searchProduct, products } = ctx
 
   if (products.status === 'loading') {
-    return <Message text={'Loading...'} />
+    return <Message text={'Loading...'} className="text-blue-600" />
   }
   if (products.status === 'error') {
-    return <Message text={products.error.message} />
+    return <Message text={products.error.message} className="text-red-600" />
   }
   return (
     <section className="mx-auto container p-4 mt-8">
